@@ -2,7 +2,7 @@ name: Schedule Test 4.30 IST
 
 on:
   schedule:
-    - cron: "0 11 * * 4"   # 11:00 UTC = 4:30 PM IST
+    - cron: "10 14 * * 4"   # 11:00 UTC = 4:30 PM IST
   workflow_dispatch:
 
 jobs:
