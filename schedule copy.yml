@@ -1,9 +1,9 @@
-name: Schedule Test 4.30
+name: Schedule Test 4.30 IST
 
 on:
   schedule:
-    - cron: "0 16 * * 4"   
-  workflow_dispatch:         
+    - cron: "0 11 * * 4"   # 11:00 UTC = 4:30 PM IST
+  workflow_dispatch:
 
 jobs:
   test-schedule:
@@ -17,6 +17,10 @@ jobs:
         run: |
           echo "Workflow triggered at:"
           date
+          echo "IST time:"
+          date -u
+          echo "Converted to IST:"
+          date -d "+5 hours 30 minutes"
 
       - name: Create Test File
         run: |
