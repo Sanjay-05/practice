@@ -1,0 +1,30 @@
+name: Schedule Test 4.30
+
+on:
+  schedule:
+    - cron: "0 16 * * 4"   
+  workflow_dispatch:         
+
+jobs:
+  test-schedule:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Print Current Time
+        run: |
+          echo "Workflow triggered at:"
+          date
+
+      - name: Create Test File
+        run: |
+          echo "This ran at $(date)" > output.txt
+          cat output.txt
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: schedule-output
+          path: output.txt
