@@ -1,0 +1,30 @@
+name:  Schedule Test
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"   # Runs every 10 minutes (UTC)
+  workflow_dispatch:         # Allows manual trigger
+
+jobs:
+  test-schedule:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Print Current Time
+        run: |
+          echo "Workflow triggered at:"
+          date
+
+      - name: Create Test File
+        run: |
+          echo "This ran at $(date)" > output.txt
+          cat output.txt
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: schedule-output
+          path: output.txt
